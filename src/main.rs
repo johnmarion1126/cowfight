@@ -1,3 +1,5 @@
+#[path = "cow.rs"] mod cow;
+
 fn main() {
-    println!("Hello, world!");
+   cow::cow::call_cow(); 
 }
