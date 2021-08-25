@@ -27,12 +27,12 @@ pub mod cow {
                 "fight" => {
                     self.health -= 2;
                     println!("\n \tCow takes two damage\n");
-                    show_cow();
+                    show_cow("angry".to_string());
                 },
                 "pet" => {
                     self.attack -= 2;
-                    println!("\n \tCow liked that\n");
-                    show_cow();
+                    println!("\n \tCow liked that");
+                    show_cow("happy".to_string());
                 } 
                 _ => return,
             }
@@ -47,9 +47,19 @@ pub mod cow {
         }
     }
 
-    pub fn show_cow() {
+    pub fn show_cow(state: String) {
         println!("                    ^__^");
-        println!("                    (oo)\\_______");
+
+        if state == "angry" {
+            println!("                    (><)\\_______");
+        } else if state == "happy" {
+            println!("                    (uu)\\_______");
+        } else if state == "faint" {
+            println!("                    (xx)\\_______");
+        } else if state == "default"{
+            println!("                    (oo)\\_______");
+        }
+
         println!("                    (__)\\       )\\/\\");
         println!("                        ||----w |");
         println!("                        ||     ||");

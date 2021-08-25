@@ -5,7 +5,7 @@ use std::io;
 fn main() {
     println!("\n \t A wild cow appeared!\n");
     let mut enemy_cow = cow::cow::new_cow();
-    cow::cow::show_cow();
+    cow::cow::show_cow("default".to_string());
 
     println!("What will you do?");
     let mut input = String::new();
