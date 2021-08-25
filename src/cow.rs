@@ -52,7 +52,7 @@ pub mod cow {
 
     }
 
-    pub fn show_cow(state: &CowState) {
+    fn show_cow(state: &CowState) {
         println!("                    ^__^");
 
         match state {
