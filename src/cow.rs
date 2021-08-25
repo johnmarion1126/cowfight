@@ -26,9 +26,15 @@ pub mod cow {
         pub fn react_to_player(&mut self, state: String) {
             match state.as_str() {
                 "fight" => {
-                    self.health -= 2;
-                    println!("\n \tCow takes two damage\n");
-                    self.cow_state = CowState::Hurt;
+                    let damage = thread_rng().gen_range(1..4);
+                    self.health -= damage;
+                    println!("\n \tCow takes {} damage\n", damage);
+                    if self.health <= 0 {
+                        self.health = 0;
+                        self.cow_state = CowState::Faint;
+                    }else {
+                        self.cow_state = CowState::Hurt;
+                    }
                 },
                 "pet" => {
                     println!("\n \tCow liked that");
