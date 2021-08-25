@@ -32,6 +32,7 @@ fn execute_player_action(enemy_cow: &mut cow::cow::Cow, input: String) {
     match input.trim() {
         "fight" => enemy_cow.react_to_player("fight".to_string()),
         "pet" => enemy_cow.react_to_player("pet".to_string()),
-        _ => println!("User stares at the cow and does nothing"),
+        "run" => enemy_cow.react_to_player("run".to_string()),
+        _ => println!("You stare at the cow and do nothing"),
     }
 }

@@ -39,7 +39,11 @@ pub mod cow {
                 "pet" => {
                     println!("\n \tCow liked that");
                     self.cow_state = CowState::Happy;
-                } 
+                },
+                "run" => {
+                    println!("\n \tYou run away and cried in the shower\n");
+                    self.health = 0;
+                }
                 _ => return,
             }
         }
