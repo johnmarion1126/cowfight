@@ -7,8 +7,12 @@ fn main() {
     let mut enemy_cow = cow::cow::new_cow();
     cow::cow::show_cow("default".to_string());
     
-    println!("Choose your action (fight/pet/run)");
-    execute_player_action(enemy_cow, get_input());
+    while enemy_cow.get_cow_health() > 0 {
+        println!("\nChoose your action (fight/pet/run)");
+        execute_player_action(&mut enemy_cow, get_input());
+    }
+
+    println!("You won!");
 }
 
 fn get_input() -> String {
@@ -19,7 +23,7 @@ fn get_input() -> String {
     input
 }
 
-fn execute_player_action(mut enemy_cow: cow::cow::Cow, input: String) {
+fn execute_player_action(enemy_cow: &mut cow::cow::Cow, input: String) {
     match input.trim() {
         "fight" => enemy_cow.react_to_player("fight".to_string()),
         "pet" => enemy_cow.react_to_player("pet".to_string()),

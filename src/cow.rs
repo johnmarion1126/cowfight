@@ -37,6 +37,10 @@ pub mod cow {
                 _ => return,
             }
         }
+
+        pub fn get_cow_health(&self) -> i8 {
+            self.health
+        }
     }
 
     pub fn new_cow() -> Cow {
