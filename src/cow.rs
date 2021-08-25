@@ -3,9 +3,10 @@ pub mod cow {
     use rand::thread_rng;
 
     #[derive(Debug)]
-    enum CowState {
-        CowingAround,
-        Attack,
+    pub enum CowState {
+        DeathStare,
+        Hurt,
+        Happy,
         Faint,
     }
 
@@ -27,45 +28,50 @@ pub mod cow {
                 "fight" => {
                     self.health -= 2;
                     println!("\n \tCow takes two damage\n");
-                    show_cow("angry".to_string());
+                    self.cow_state = CowState::Hurt;
+                    show_cow(&self.cow_state);
                 },
                 "pet" => {
                     self.attack -= 2;
                     println!("\n \tCow liked that");
-                    show_cow("happy".to_string());
+                    self.cow_state = CowState::Happy;
+                    show_cow(&self.cow_state);
                 } 
                 _ => return,
             }
         }
 
-        pub fn get_cow_health(&self) -> i8 {
+        pub fn change_to_default_state(&mut self) {
+            self.cow_state = CowState::DeathStare;
+            show_cow(&self.cow_state);
+        }
+
+        pub fn get_cow_health(&mut self) -> i8 {
             self.health
         }
+
     }
 
-    pub fn new_cow() -> Cow {
-        Cow {
-            health: thread_rng().gen_range(5..11),
-            attack: thread_rng().gen_range(2..6),
-            cow_state: CowState::CowingAround,
-        }
-    }
-
-    pub fn show_cow(state: String) {
+    pub fn show_cow(state: &CowState) {
         println!("                    ^__^");
 
-        if state == "angry" {
-            println!("                    (><)\\_______");
-        } else if state == "happy" {
-            println!("                    (uu)\\_______");
-        } else if state == "faint" {
-            println!("                    (xx)\\_______");
-        } else if state == "default"{
-            println!("                    (oo)\\_______");
+        match state {
+           CowState::Hurt => println!("                    (><)\\_______"),
+           CowState::Happy => println!("                    (uu)\\_______"),
+           CowState::Faint => println!("                    (xx)\\_______"),
+           _ => println!("                    (oo)\\_______"),
         }
 
         println!("                    (__)\\       )\\/\\");
         println!("                        ||----w |");
         println!("                        ||     ||");
+    }
+    
+    pub fn new_cow() -> Cow {
+        Cow {
+            health: thread_rng().gen_range(5..11),
+            attack: thread_rng().gen_range(2..6),
+            cow_state: CowState::DeathStare,
+        }
     }
 }

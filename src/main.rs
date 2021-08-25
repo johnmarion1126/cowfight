@@ -5,11 +5,12 @@ use std::io;
 fn main() {
     println!("\n \t A wild cow appeared!\n");
     let mut enemy_cow = cow::cow::new_cow();
-    cow::cow::show_cow("default".to_string());
+    enemy_cow.change_to_default_state();
     
     while enemy_cow.get_cow_health() > 0 {
         println!("\nChoose your action (fight/pet/run)");
         execute_player_action(&mut enemy_cow, get_input());
+        enemy_cow.get_cow_stats();
     }
 
     println!("You won!");
