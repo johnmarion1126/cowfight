@@ -4,9 +4,8 @@ pub mod cow {
 
     #[derive(Debug)]
     enum CowState {
-        Wait,
+        CowingAround,
         Attack,
-        TakeDamage,
         Faint,
     }
 
@@ -23,12 +22,18 @@ pub mod cow {
             println!("State: {:?}", self.cow_state);
         }
 
-        pub fn change_cow_state(&mut self, state: String) {
+        pub fn react_to_player(&mut self, state: String) {
             match state.as_str() {
-                "Wait" => self.cow_state = CowState::Wait,
-                "Attack" => self.cow_state = CowState::Attack,
-                "TakeDamage" => self.cow_state = CowState::TakeDamage,
-                "Faint" => self.cow_state = CowState::Faint,
+                "fight" => {
+                    self.health -= 2;
+                    println!("\n \tCow takes two damage\n");
+                    show_cow();
+                },
+                "pet" => {
+                    self.attack -= 2;
+                    println!("\n \tCow liked that\n");
+                    show_cow();
+                } 
                 _ => return,
             }
         }
@@ -38,7 +43,7 @@ pub mod cow {
         Cow {
             health: thread_rng().gen_range(5..11),
             attack: thread_rng().gen_range(2..6),
-            cow_state: CowState::Wait,
+            cow_state: CowState::CowingAround,
         }
     }
 
