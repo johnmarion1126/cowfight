@@ -1,5 +1,5 @@
 [package]
-name = "fight-a-cow"
+name = "cowfight"
 version = "0.1.0"
 edition = "2018"
 
