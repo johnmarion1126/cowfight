@@ -29,13 +29,10 @@ pub mod cow {
                     self.health -= 2;
                     println!("\n \tCow takes two damage\n");
                     self.cow_state = CowState::Hurt;
-                    show_cow(&self.cow_state);
                 },
                 "pet" => {
-                    self.attack -= 2;
                     println!("\n \tCow liked that");
                     self.cow_state = CowState::Happy;
-                    show_cow(&self.cow_state);
                 } 
                 _ => return,
             }
@@ -43,29 +40,28 @@ pub mod cow {
 
         pub fn change_to_default_state(&mut self) {
             self.cow_state = CowState::DeathStare;
-            show_cow(&self.cow_state);
         }
 
         pub fn get_cow_health(&mut self) -> i8 {
             self.health
         }
 
-    }
+        pub fn show_cow(&self) {
+            println!("                    ^__^");
 
-    fn show_cow(state: &CowState) {
-        println!("                    ^__^");
+            match self.cow_state {
+               CowState::Hurt => println!("                    (><)\\_______"),
+               CowState::Happy => println!("                    (uu)\\_______"),
+               CowState::Faint => println!("                    (xx)\\_______"),
+               _ => println!("                    (oo)\\_______"),
+            }
 
-        match state {
-           CowState::Hurt => println!("                    (><)\\_______"),
-           CowState::Happy => println!("                    (uu)\\_______"),
-           CowState::Faint => println!("                    (xx)\\_______"),
-           _ => println!("                    (oo)\\_______"),
+            println!("                    (__)\\       )\\/\\");
+            println!("                        ||----w |");
+            println!("                        ||     ||");
         }
-
-        println!("                    (__)\\       )\\/\\");
-        println!("                        ||----w |");
-        println!("                        ||     ||");
     }
+
     
     pub fn new_cow() -> Cow {
         Cow {
