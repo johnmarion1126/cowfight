@@ -1,5 +1,4 @@
 pub mod cow {
-
     use rand::prelude::*;
     use rand::thread_rng;
 
@@ -18,19 +17,20 @@ pub mod cow {
     }
 
     impl Cow {
-
-        pub fn show_cow() {
-            println!("     ^__^");
-            println!("     (oo)\\_______");
-            println!("     (__)\\       )\\/\\");
-            println!("         ||----w |");
-            println!("         ||     ||");
-        }
-
         pub fn get_cow_stats(&self) {
             println!("Health: {}", self.health);
             println!("Attack: {}", self.attack);
             println!("State: {:?}", self.cow_state);
+        }
+
+        pub fn change_cow_state(&mut self, state: String) {
+            match state.as_str() {
+                "Wait" => self.cow_state = CowState::Wait,
+                "Attack" => self.cow_state = CowState::Attack,
+                "TakeDamage" => self.cow_state = CowState::TakeDamage,
+                "Faint" => self.cow_state = CowState::Faint,
+                _ => return,
+            }
         }
     }
 
@@ -42,4 +42,11 @@ pub mod cow {
         }
     }
 
+    pub fn show_cow() {
+        println!("                    ^__^");
+        println!("                    (oo)\\_______");
+        println!("                    (__)\\       )\\/\\");
+        println!("                        ||----w |");
+        println!("                        ||     ||");
+    }
 }
