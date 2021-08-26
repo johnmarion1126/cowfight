@@ -48,8 +48,16 @@ pub mod cow {
             }
         }
 
-        pub fn change_to_default_state(&mut self) {
-            self.cow_state = CowState::DeathStare;
+        pub fn call_cow_action(&mut self) {
+            match self.cow_state {
+                CowState::Happy => println!("\n \tThe cow loafs around"),
+                CowState::Hurt => {
+                    println!("\n \tThe cow attacks!");
+                    self.cow_state = CowState::DeathStare;
+                },
+                CowState::Faint => println!("\n \tThe cow fainted!"),
+                _ => println!("\n \tThe cow stares at the you"),
+            }
         }
 
         pub fn get_cow_health(&mut self) -> i8 {
