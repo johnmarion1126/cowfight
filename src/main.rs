@@ -2,22 +2,25 @@ use std::io;
 use std::{thread, time};
 
 #[path = "cow.rs"] mod cow;
+#[path = "player.rs"] mod player;
 
 fn main() {
-    println!("\n \t A wild cow appeared!\n");
-    let mut enemy_cow = cow::cow::new_cow();
-    enemy_cow.show_cow();
-    let one_second = time::Duration::from_millis(1000);
-    
-    while enemy_cow.get_cow_health() > 0 {
-        println!("\nChoose your action (fight/pet/run)");
-        execute_player_action(&mut enemy_cow, get_input());
-        enemy_cow.show_cow();
-        enemy_cow.get_cow_stats();
-        thread::sleep(one_second);
-    }
+    let mut user_player = player::player::get_player();
+    user_player.get_player_stats();
+    // println!("\n \t A wild cow appeared!\n");
+    // let mut enemy_cow = cow::cow::new_cow();
+    // enemy_cow.show_cow();
+    // let DELAY = time::Duration::from_millis(500);
+    // 
+    // while enemy_cow.get_cow_health() > 0 {
+    //     println!("\nChoose your action (fight/pet/run)");
+    //     execute_player_action(&mut enemy_cow, get_input());
+    //     enemy_cow.show_cow();
+    //     enemy_cow.get_cow_stats();
+    //     thread::sleep(DELAY);
+    // }
 
-    println!("You won!");
+    // println!("You won!");
 }
 
 fn get_input() -> String {
