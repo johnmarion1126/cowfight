@@ -5,8 +5,8 @@ use std::{thread, time};
 #[path = "player.rs"] mod player;
 
 fn main() {
-    let mut user_player = player::player::get_player();
-    user_player.get_player_stats();
+    let mut player_1 = player::player::get_player();
+    player_1.get_player_stats();
 
     println!("\n \t A wild cow appeared!\n");
     let mut enemy_cow = cow::cow::new_cow();
@@ -19,9 +19,10 @@ fn main() {
         enemy_cow.show_cow();
         enemy_cow.get_cow_stats();
         thread::sleep(DELAY);
-        enemy_cow.call_cow_action();
+        enemy_cow.call_cow_action(&mut player_1);
         enemy_cow.show_cow();
         thread::sleep(DELAY);
+        player_1.get_player_stats();
     }
 
     println!("You won!");

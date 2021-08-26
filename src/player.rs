@@ -5,9 +5,9 @@ pub mod player {
     static PLAYER_FILE: &str = "player.json";
 
     pub struct Player {
-        health: i64,
-        points: i64,
-        exp: i64,
+        pub health: i64,
+        pub points: i64,
+        pub exp: i64,
     }
 
     impl Player {

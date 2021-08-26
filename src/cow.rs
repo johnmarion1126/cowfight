@@ -26,7 +26,7 @@ pub mod cow {
         pub fn react_to_player(&mut self, state: String) {
             match state.as_str() {
                 "fight" => {
-                    let damage = thread_rng().gen_range(1..4);
+                    let damage = thread_rng().gen_range(2..4);
                     self.health -= damage;
                     println!("\n \tCow takes {} damage\n", damage);
                     if self.health <= 0 {
@@ -48,11 +48,14 @@ pub mod cow {
             }
         }
 
-        pub fn call_cow_action(&mut self) {
+        pub fn call_cow_action(&mut self, player: &mut crate::player::player::Player) {
             match self.cow_state {
                 CowState::Happy => println!("\n \tThe cow loafs around"),
                 CowState::Hurt => {
                     println!("\n \tThe cow attacks!");
+                    let damage = thread_rng().gen_range(1..4);
+                    player.health -= damage;
+                    println!("\n \tYou take {} damage\n", damage);
                     self.cow_state = CowState::DeathStare;
                 },
                 CowState::Faint => println!("\n \tThe cow fainted!"),
