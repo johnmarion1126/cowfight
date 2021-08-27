@@ -1,6 +1,5 @@
 pub mod player {
     use serde::{Deserialize, Serialize};
-    use serde_json::Value;
     use std::fs;
     use std::fs::File;
     use std::io::prelude::*;
@@ -30,7 +29,7 @@ pub mod player {
                 .write(true)
                 .open(PLAYER_FILE)
                 .expect("Failed to open file");
-            write!(file, "{}", serialized);
+            write!(file, "{}", serialized).expect("Failed to save stats");
         }
     }
 

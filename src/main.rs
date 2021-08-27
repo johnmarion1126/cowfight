@@ -13,17 +13,17 @@ fn main() {
     println!("\n \t A wild cow appeared!\n");
     let mut enemy_cow = cow::cow::new_cow();
     enemy_cow.show_cow();
-    let DELAY = time::Duration::from_millis(1000);
+    let delay = time::Duration::from_millis(1000);
 
     while enemy_cow.get_cow_health() > 0 {
         println!("\nChoose your action (fight/pet/run)");
         execute_player_action(&mut enemy_cow, get_input());
         enemy_cow.show_cow();
         enemy_cow.get_cow_stats();
-        thread::sleep(DELAY);
+        thread::sleep(delay);
         enemy_cow.call_cow_action(&mut player_1);
         enemy_cow.show_cow();
-        thread::sleep(DELAY);
+        thread::sleep(delay);
         player_1.get_player_stats();
     }
 
@@ -34,7 +34,7 @@ fn main() {
             player_1.gain_points();
             player_1.save_stats();
         }
-        _ => println!(""),
+        _ => println!(),
     }
 }
 

@@ -44,7 +44,7 @@ pub mod cow {
                     println!("\n \tYou run away and cried in the shower\n");
                     self.health = 0;
                 }
-                _ => return,
+                _ => {}
             }
         }
 
