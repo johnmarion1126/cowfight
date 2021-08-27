@@ -8,8 +8,6 @@ mod player;
 
 fn main() {
     let mut player_1 = player::player::get_player();
-    player_1.get_player_stats();
-
     println!("\n \t A wild cow appeared!\n");
     let mut enemy_cow = cow::cow::new_cow();
     enemy_cow.show_cow();
@@ -19,12 +17,10 @@ fn main() {
         println!("\nChoose your action (fight/pet/run)");
         execute_player_action(&mut enemy_cow, get_input());
         enemy_cow.show_cow();
-        enemy_cow.get_cow_stats();
         thread::sleep(delay);
         enemy_cow.call_cow_action(&mut player_1);
         enemy_cow.show_cow();
         thread::sleep(delay);
-        player_1.get_player_stats();
     }
 
     println!("You won!");
