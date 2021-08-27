@@ -1,8 +1,10 @@
 use std::io;
 use std::{thread, time};
 
-#[path = "cow.rs"] mod cow;
-#[path = "player.rs"] mod player;
+#[path = "cow.rs"]
+mod cow;
+#[path = "player.rs"]
+mod player;
 
 fn main() {
     let mut player_1 = player::player::get_player();
@@ -12,7 +14,7 @@ fn main() {
     let mut enemy_cow = cow::cow::new_cow();
     enemy_cow.show_cow();
     let DELAY = time::Duration::from_millis(1000);
-    
+
     while enemy_cow.get_cow_health() > 0 {
         println!("\nChoose your action (fight/pet/run)");
         execute_player_action(&mut enemy_cow, get_input());
@@ -31,7 +33,7 @@ fn main() {
         cow::cow::CowState::Faint => {
             player_1.gain_points();
             player_1.save_stats();
-        },
+        }
         _ => println!(""),
     }
 }

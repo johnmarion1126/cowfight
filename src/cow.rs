@@ -13,7 +13,7 @@ pub mod cow {
     pub struct Cow {
         health: i8,
         attack: i8,
-        cow_state: CowState, 
+        cow_state: CowState,
     }
 
     impl Cow {
@@ -32,14 +32,14 @@ pub mod cow {
                     if self.health <= 0 {
                         self.health = 0;
                         self.cow_state = CowState::Faint;
-                    }else {
+                    } else {
                         self.cow_state = CowState::Hurt;
                     }
-                },
+                }
                 "pet" => {
                     println!("\n \tCow liked that");
                     self.cow_state = CowState::Happy;
-                },
+                }
                 "run" => {
                     println!("\n \tYou run away and cried in the shower\n");
                     self.health = 0;
@@ -57,7 +57,7 @@ pub mod cow {
                     player.health -= damage;
                     println!("\n \tYou take {} damage\n", damage);
                     self.cow_state = CowState::DeathStare;
-                },
+                }
                 CowState::Faint => println!("\n \tThe cow fainted!"),
                 _ => println!("\n \tThe cow stares at the you"),
             }
@@ -75,10 +75,10 @@ pub mod cow {
             println!("                    ^__^");
 
             match self.cow_state {
-               CowState::Hurt => println!("                    (><)\\_______"),
-               CowState::Happy => println!("                    (uu)\\_______"),
-               CowState::Faint => println!("                    (xx)\\_______"),
-               _ => println!("                    (oo)\\_______"),
+                CowState::Hurt => println!("                    (><)\\_______"),
+                CowState::Happy => println!("                    (uu)\\_______"),
+                CowState::Faint => println!("                    (xx)\\_______"),
+                _ => println!("                    (oo)\\_______"),
             }
 
             println!("                    (__)\\       )\\/\\");
