@@ -26,6 +26,14 @@ fn main() {
     }
 
     println!("You won!");
+
+    match enemy_cow.get_cow_state() {
+        cow::cow::CowState::Faint => {
+            player_1.gain_points();
+            player_1.save_stats();
+        },
+        _ => println!(""),
+    }
 }
 
 fn get_input() -> String {

@@ -63,8 +63,12 @@ pub mod cow {
             }
         }
 
-        pub fn get_cow_health(&mut self) -> i8 {
+        pub fn get_cow_health(&self) -> i8 {
             self.health
+        }
+
+        pub fn get_cow_state(&self) -> &CowState {
+            &self.cow_state
         }
 
         pub fn show_cow(&self) {
@@ -83,7 +87,6 @@ pub mod cow {
         }
     }
 
-    
     pub fn new_cow() -> Cow {
         Cow {
             health: thread_rng().gen_range(5..11),
